@@ -7,12 +7,19 @@ import com.mikanGames.battleGame.characters.Character;
 public class Slime extends com.mikanGames.battleGame.characters.Character {
 
     public Slime() {
-        int[] s = BattleGameTools.enemyStatusInit(10, 10, 5, 5, 3, 2, 4, 3, 4, 5);
-        this("スライム", s[0], s[1], s[2], s[3], s[4], s[5], s[6], s[7], s[8], s[9], "");
-    }
-
-    public Slime(String name, int hp, int maxHp, int mp, int maxMp, int attackPower, int magicPower, int phyDefense, int magDefense, int speed, int lack, String abnormalStatus) {
-        super(name, hp, maxHp, mp, maxMp, attackPower, magicPower, phyDefense, magDefense, speed, lack, abnormalStatus);
+        int[] status = BattleGameTools.enemyStatusInit(13, 5, 5, 2, 6, 3, 3, 5);
+        this.setName("スライム");
+        this.setHp(status[0]);
+        this.setMaxHp(status[0]);
+        this.setMp(status[1]);
+        this.setMaxMp(status[1]);
+        this.setAttackPower(status[2]);
+        this.setMagicPower(status[3]);
+        this.setPhyDefense(status[4]);
+        this.setMagDefense(status[5]);
+        this.setSpeed(status[6]);
+        this.setLack(status[7]);
+        this.setType("無");
     }
 
     @Override

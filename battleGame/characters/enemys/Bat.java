@@ -1,12 +1,25 @@
 package com.mikanGames.battleGame.characters.enemys;
 
 import com.mikanGames.battleGame.BattleGameCalc;
+import com.mikanGames.battleGame.BattleGameTools;
 import com.mikanGames.battleGame.characters.Character;
 
 public class Bat extends com.mikanGames.battleGame.characters.Character {
 
-    public Bat(String name, int hp, int maxHp, int mp, int maxMp, int attackPower, int magicPower, int phyDefense, int magDefense, int speed, int lack, String abnormalStatus) {
-        super(name, hp, maxHp, mp, maxMp, attackPower, magicPower, phyDefense, magDefense, speed, lack, abnormalStatus);
+    public Bat() {
+        int[] status = BattleGameTools.enemyStatusInit(10, 15, 3, 8, 4, 5, 7, 5);
+        this.setName("バット");
+        this.setHp(status[0]);
+        this.setMaxHp(status[0]);
+        this.setMp(status[1]);
+        this.setMaxMp(status[1]);
+        this.setAttackPower(status[2]);
+        this.setMagicPower(status[3]);
+        this.setPhyDefense(status[4]);
+        this.setMagDefense(status[5]);
+        this.setSpeed(status[6]);
+        this.setLack(status[7]);
+        this.setType("闇");
     }
 
     @Override

@@ -16,26 +16,9 @@ public abstract class Character {
     private int magDefense;
     private int speed;
     private int lack;
+    private String type;
     private String abnormalStatus = "";
 
-    public Character() {
-    }
-
-    public Character(String name, int hp, int maxHp, int mp, int maxMp, int attackPower,
-                     int magicPower, int phyDefense, int magDefense, int speed, int lack, String abnormalStatus) {
-        this.name = name;
-        this.hp = hp;
-        this.maxHp = maxHp;
-        this.mp = mp;
-        this.maxMp = maxMp;
-        this.attackPower = attackPower;
-        this.magicPower = magicPower;
-        this.phyDefense = phyDefense;
-        this.magDefense = magDefense;
-        this.speed = speed;
-        this.lack = lack;
-        this.abnormalStatus = abnormalStatus;
-    }
 
     public abstract int attack(Character c);
 
@@ -127,6 +110,14 @@ public abstract class Character {
 
     public void setMaxMp(int maxMp) {
         this.maxMp = maxMp;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
     }
 
     public String getAbnormalStatus() {

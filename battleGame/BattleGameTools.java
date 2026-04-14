@@ -1,5 +1,7 @@
 package com.mikanGames.battleGame;
 
+import android.widget.Switch;
+
 import com.mikanGames.battleGame.characters.Character;
 
 import java.util.Map;
