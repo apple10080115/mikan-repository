@@ -7,7 +7,7 @@ import com.mikanGames.battleGame.characters.Character;
 public class Slime extends com.mikanGames.battleGame.characters.Character {
 
     public Slime() {
-        int[] status = BattleGameTools.enemyStatusInit(13, 5, 5, 2, 6, 3, 3, 5);
+        int[] status = BattleGameTools.enemyStatusInit(13, 15, 5, 2, 6, 3, 3, 5);
         this.setName("スライム");
         this.setHp(status[0]);
         this.setMaxHp(status[0]);
@@ -33,4 +33,5 @@ public class Slime extends com.mikanGames.battleGame.characters.Character {
     public int magic(Character player) {
         return 0;
     }
+
 }

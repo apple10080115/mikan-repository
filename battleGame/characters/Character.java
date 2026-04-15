@@ -1,5 +1,9 @@
 package com.mikanGames.battleGame.characters;
 
+import com.mikanGames.battleGame.skills.Magic;
+
+import java.util.List;
+
 /**
  * キャラクタースーパークラス
  */
@@ -18,6 +22,7 @@ public abstract class Character {
     private int lack;
     private String type;
     private String abnormalStatus = "";
+    private List<Magic> magics;
 
 
     public abstract int attack(Character c);
@@ -126,6 +131,14 @@ public abstract class Character {
 
     public void setAbnormalStatus(String abnormalStatus) {
         this.abnormalStatus = abnormalStatus;
+    }
+
+    public List<Magic> getMagics() {
+        return magics;
+    }
+
+    public void setMagic(List<Magic> magics) {
+        this.magics = magics;
     }
 
 }

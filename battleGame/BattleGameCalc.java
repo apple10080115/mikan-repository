@@ -1,6 +1,7 @@
 package com.mikanGames.battleGame;
 
 import com.mikanGames.battleGame.characters.Character;
+import com.mikanGames.battleGame.skills.Magic;
 
 import java.util.Map;
 import java.util.Random;
@@ -24,8 +25,8 @@ public class BattleGameCalc {
             }
         }
 
-        int critical = new Random().nextInt(16);
-        if (player.getLack() > new Random().nextInt(4000)) {
+        int critical = new Random().nextInt(64);
+        if (player.getLack() > new Random().nextInt(2000)) {
             critical = 0;
         }
 
@@ -50,7 +51,7 @@ public class BattleGameCalc {
             }
         }
 
-        int critical = new Random().nextInt(16);
+        int critical = new Random().nextInt(64);
         if (critical == 0) {
             damage = Math.round(damage * 1.5f);
         }
@@ -58,19 +59,81 @@ public class BattleGameCalc {
         return damage;
     }
 
-    public int enemyMagicAttack(Character enemy, Character player, String type) {
-        int damage = (int) ((enemy.getMagicPower() * randomNumber() - player.getMagDefense() * randomNumber() - (double) player.getPhyDefense() / 8));
+    public int playerMagicAttack(Character player, Character enemy, Magic magic) {
+        int damage = (int) (((player.getMagicPower() + magic.getBaseMagicPower()) * randomNumber() - enemy.getMagDefense() * randomNumber() - (double) enemy.getPhyDefense() / 6));
 
-        damage = (int) (damage * typeCompatibility(type, player));
+        damage = (int) (damage * typeCompatibility(magic.getType(), enemy));
 
-        damage += new Random().nextInt(10);
+        damage += new Random().nextInt(8) + 3;
+
+        switch (magic.getMagicRank()) {
+            case 1:
+                damage = (int) (damage * 1.25);
+                break;
+            case 2:
+                damage = (int) (damage * 2.5);
+                break;
+            case 3:
+                damage *= 4;
+                break;
+            case 4:
+                damage *= 6;
+                break;
+            case 5:
+                damage *= 8;
+                break;
+        }
+
+        int critical = new Random().nextInt(64);
+        if (player.getLack() > new Random().nextInt(2000)) {
+            critical = 0;
+        }
+
+        if (critical == 0) {
+            damage = Math.round(damage * 1.5f);
+        }
+
+        if (damage <= 0) {
+            damage = 0;
+        }
+
+        return damage;
+    }
+
+    public int enemyMagicAttack(Character enemy, Character player, Magic magic) {
+        int damage = (int) (((enemy.getMagicPower() + magic.getBaseMagicPower()) *
+                randomNumber() - player.getMagDefense() * randomNumber() - (double) player.getPhyDefense() / 6));
+
+        damage = (int) (damage * typeCompatibility(magic.getType(), player));
+
+        switch (magic.getMagicRank()) {
+            case 1:
+                damage = (int) (damage * 1.25);
+                break;
+            case 2:
+                damage = (int) (damage * 2.5);
+                break;
+            case 3:
+                damage *= 4;
+                break;
+            case 4:
+                damage *= 6;
+                break;
+            case 5:
+                damage *= 8;
+                break;
+        }
+
+        if (damage <= 0) {
+            damage = 0;
+        }
 
         return damage;
     }
 
     public static double randomNumber() {
         double randomNumber = new Random().nextInt(7);
-        switch ( (int) randomNumber) {
+        switch ((int) randomNumber) {
             case 0:
                 randomNumber  = 0.7;
                 break;
@@ -174,7 +237,6 @@ public class BattleGameCalc {
         } else {
             randomStatus -= randomStatus * 2;
         }
-
         return randomStatus;
     }
 
